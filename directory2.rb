@@ -7,11 +7,14 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
+    # only names that start with the letter K that are fewer than 12 letters long are added to the array    
+    if name.start_with? 'K' and name.length < 12
+      students << {name: name, cohort: :november}
+    end
 
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+      puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+      name = gets.chomp
   end
   # return the array of students
   students
@@ -22,10 +25,11 @@ def print_header
   puts "-------------"
 end
 
+# this method prints the name, cohort and number of each student
 def print(students)
-  students.each_with_index do |student, number|
-    puts "#{number + 1} #{student[:name]} (#{student[:cohort]} cohort)"
-  end
+    students.each_with_index do |student, number|
+      puts "#{number + 1} #{student[:name]} (#{student[:cohort]} cohort)"
+    end
 end
 
 def print_footer(students)
